@@ -6,18 +6,81 @@ namespace Plutoscarab.Bijection;
 
 public class Program()
 {
+    static string ToTerm(Nat n)
+    {
+        if (n < 3)
+            return new[] {"x", "y", "\\pi"}[(int)n];
+
+        var (m, f) = Nat.DivRem(n - 3, 5);
+
+        if (f == 0)
+            return (m + 1).ToString();
+
+        if (--f == 0)
+            return $"\\sqrt{{{ToTerm(m)}}}";
+            
+        var (p, q) = m;
+        var sp = ToTerm(p);
+        var sq = ToTerm(q);
+
+        if (--f == 0)
+            return $"\\frac{{{sp}}}{{{sq}}}";
+
+        var op = "+- "[(int)--f];
+        return $"\\left({sp}{op}{sq}\\right)";
+    }
+
     public static void Main()
     {
-        foreach (var w in Nat.AllWords(2).Take(30))
-            Console.Write($"{string.Join("", w)}, ");
-
-        Console.WriteLine();
-        var str = "Hello, world!".ToArray().Select(c => (Nat)(int)c).ToList();
-
-        for (var dilution = 2; dilution <= 12; dilution++)
         {
-            var code = new Nat(str, dilution);
-            var t = new string(code.ToList(dilution).Select(b => (char)(int)b).ToArray());
+            Nat n = 0;
+            Nat m = 1;
+
+            for (var i = 0; i <= 20; i++)
+            {
+                var (a, b) = n;
+                var (c, d, e) = n;
+                var (p, q) = n.ToRational();
+                var r = q == 1 ? p.ToString() : $"{p}/{q}";
+                var list = n.ToList();
+                var word = n.ToWord(10);
+                Console.WriteLine($"|{n}|{n.ToSigned()}|({a}, {b})|({c}, {d}, {e})|{r}|[{string.Join(", ", list)}]|[{string.Join(", ", word)}]|");
+                (n, m) = (m, n + m);
+            }
+        }
+
+        {
+            Nat n = 1;
+            Nat m = 2;
+
+            for (var i = 0; i <= 20; i++)
+            {
+                var (a, b) = n;
+                var (pa, qa) = a.ToRational();
+                var ra = qa == 1 ? pa.ToString() : $"{pa}/{qa}";
+                var (pb, qb) = b.ToRational();
+                var rb = qb == 1 ? pb.ToString() : $"{pb}/{qb}";
+                var list = n.ToList();
+                var ls = string.Join(", ", list.Select(k => {
+                    var (p, q) = k;
+                    return $"({p}, {q})";
+                }));
+                var hex = string.Join("", n.ToWord(26).Select(i => (char)((int)i + 65)));
+                Console.WriteLine($"|{n}|({ra}, {rb})|[{ls}]|\"{hex}\"");
+                (n, m) = (m, 2 * m + n);
+            }
+        }
+
+        {
+            Nat n = 1;
+            Nat m = 2;
+
+            for (var i = 0; i <= 20; i++)
+            {
+                var expr = ToTerm(n);
+                Console.WriteLine($"|{n}|$${expr}$$|");
+                (n, m) = (m, 2 * m + n);
+            }
         }
 
         Random rand = new();
@@ -52,31 +115,6 @@ public class Program()
             var z = (BigInteger)n;
             m = (Nat)z;
             Debug.Assert(n == m);
-        }
-
-        static (string, double) ToTerm(Nat n)
-        {
-            var (m, f) = Nat.DivRem(n, 3);
-
-            if (f == 0)
-                return ((m + 1).ToString(), (double)m + 1);
-
-            if (f == 1)
-            {
-                var (sm, dm) = ToTerm(m + 2);
-                return ("√" + sm, Math.Sqrt(dm));
-            }
-
-            var (p, q) = m;
-            var (sp, dp) = ToTerm(p);
-            var (sq, dq) = ToTerm(q);
-            return ($"({sp}+{sq})", dp + dq);
-        }
-
-        foreach (var (expr, value) in Nat.All().Take(1000).Select(ToTerm))
-        {
-            if (expr.Contains('√'))
-                Console.WriteLine($"{expr} = {value}");
         }
     }
 }
