@@ -55,53 +55,53 @@ The number obtained from a bijective mapping can be used for several purposes:
 These can be combined, for example, to map naturals to pairs of rationals, by mapping to pairs and then mapping
 each element of the pair to a rational.
 
-|Natural|Pair of rationals|List of pairs|A-Z string|
+|Natural|Map to pair and then to rationals|Map to list and then to pairs|Map to list and then to integers, and format|
 |:-:|:-:|:-:|:-:|
-|1|(0, 1)|[(0, 0)]|"A"
-|2|(1, 0)|[(0, 0), (0, 0)]|"B"
-|5|(1/2, 0)|[(0, 2)]|"E"
-|12|(1/2, 1/2)|[(0, 4)]|"L"
-|29|(1, 2/3)|[(1, 4)]|"AC"
-|70|(1/3, 3)|[(2, 8)]|"BR"
-|169|(1/5, 1)|[(12, 0)]|"FM"
-|408|(1/2, 5/8)|[(1, 0), (0, 1), (1, 0)]|"OR"
-|985|(10/3, 1/3)|[(25, 9)]|"AKW"
-|2378|(1/6, 4/11)|[(22, 22)]|"CML"
-|5741|(9/13, 4/11)|[(1, 8), (2, 0)]|"HLU"
-|13860|(30/19, 0)|[(0, 0), (2, 3), (1, 0)]|"TMB"
-|33461|(7/12, 5/23)|[(0, 3), (0, 2), (0, 1), (1, 0)]|"AWLY"
-|80782|(31/19, 11/25)|[(1, 0), (3, 0), (0, 0), (0, 3)]|"DOLZ"
-|195025|(7/5, 65/18)|[(3, 0), (3, 4), (3, 1)]|"KBLY"
-|470832|(62/27, 12/17)|[(7, 15), (15, 5)]|"ZTLX"
-|1136689|(46/17, 19/71)|[(200, 728)]|"BLQLU"
-|2744210|(55/32, 54/37)|[(1, 1), (5, 1), (1, 4), (0, 1)]|"EZCLN"
-|6625109|(79/62, 49/69)|[(1387, 694)]|"NLXKW"
-|15994428|(20/73, 82/17)|[(4, 16), (3, 2), (6, 0)]|"AHYZJH"
-|38613965|(101/22, 89/243)|[(2, 2), (2, 0), (10, 0), (0, 5)]|"CFLYFM"
+|1|(0, 1)|[(0, 0)]|$$1$$|
+|2|(1, 0)|[(0, 0), (0, 0)]|$$n$$|
+|5|(1/2, 0)|[(0, 2)]|$$-2$$|
+|12|(1/2, 1/2)|[(0, 4)]|$$-3$$|
+|29|(1, 2/3)|[(1, 4)]|$$1+2n$$|
+|70|(1/3, 3)|[(2, 8)]|$$-n-n^2$$|
+|169|(1/5, 1)|[(12, 0)]|$$-3+2n$$|
+|408|(1/2, 5/8)|[(1, 0), (0, 1), (1, 0)]|$$-78$$|
+|985|(10/3, 1/3)|[(25, 9)]|$$-3-2n^2$$|
+|2378|(1/6, 4/11)|[(22, 22)]|$$1+2n+5n^2$$|
+|5741|(9/13, 4/11)|[(1, 8), (2, 0)]|$$687$$|
+|13860|(30/19, 0)|[(0, 0), (2, 3), (1, 0)]|$$9-n-2n^2$$|
+|33461|(7/12, 5/23)|[(0, 3), (0, 2), (0, 1), (1, 0)]|$$3564$$|
+|80782|(31/19, 11/25)|[(1, 0), (3, 0), (0, 0), (0, 3)]|$$n^8+n^{18}+n^{19}$$|
+|195025|(7/5, 65/18)|[(3, 0), (3, 4), (3, 1)]|$$69+44n$$|
+|470832|(62/27, 12/17)|[(7, 15), (15, 5)]|$$1-3n+2n^2-n^3+n^4-n^5$$|
+|1136689|(46/17, 19/71)|[(200, 728)]|$$2+n^4+n^5+n^7+n^8+2n^9$$|
+|2744210|(55/32, 54/37)|[(1, 1), (5, 1), (1, 4), (0, 1)]|$$3-n+2n^3-2n^7$$|
+|6625109|(79/62, 49/69)|[(1387, 694)]|$$n+n^3+n^9-n^{10}+n^{13}-n^{16}$$|
+|15994428|(20/73, 82/17)|[(4, 16), (3, 2), (6, 0)]|$$192+507n$$|
+|38613965|(101/22, 89/243)|[(2, 2), (2, 0), (10, 0), (0, 5)]|$$-1-8n+n^4-6n^5$$|
 
 Mappings can be recursively defined, for example to encode a term algebra to generate or encode
 arbitrary expressions.
 
-|Natural|Expression|
-|:-:|:-:|
-|1|$$y$$|
-|2|$$\pi$$|
-|5|$$\frac{x}{x}$$|
-|12|$$\left(x-y\right)$$|
-|29|$$\sqrt{\frac{x}{x}}$$|
-|70|$$\frac{1}{y}$$|
-|169|$$\sqrt{7}$$|
-|408|$$82$$|
-|985|$$\frac{\left(x+x\right)}{3}$$|
-|2378|$$476$$|
-|5741|$$\left(\sqrt{1}+6\right)$$|
-|13860|$$\frac{\frac{1}{y}}{1}$$|
-|33461|$$\left(\left(x+\pi\right)+\sqrt{4}\right)$$|
-|80782|$$\left(\frac{\pi}{y}-\sqrt{\left(y+y\right)}\right)$$|
-|195025|$$\frac{45}{\frac{x}{\sqrt{x}}}$$|
-|470832|$$\left(\sqrt{\frac{y}{\pi}}-\sqrt{\frac{\pi}{y}}\right)$$|
-|1136689|$$\sqrt{\left(\frac{y}{x}-\left(y+\sqrt{y}\right)\right)}$$|
-|2744210|$$\frac{43}{\sqrt{\left(\sqrt{x}+1\right)}}$$|
-|6625109|$$\sqrt{\left(\frac{2}{1}+\left(1-2\right)\right)}$$|
-|15994428|$$3198886$$|
-|38613965|$$\frac{\left(\frac{y}{y}-\sqrt{x}\right)}{\left(5-y\right)}$$|
+|Natural|Math expression|Code expression|
+|:-:|:-:|:-:|
+|1|$$y$$|`Str("")`|
+|4|$$\sqrt{x}$$|`Str("a")`|
+|21|$$\left(x+\pi\right)$$|`Int(7)`|
+|104|$$\sqrt{\frac{x}{\pi}}$$|`Tree(Int(2), Str(""))`|
+|521|$$\left(\left(x-y\right)+y\right)$$|`Tree(Tree(Int(0), Int(0)), Str("e"))`|
+|2604|$$\sqrt{\frac{\left(x-y\right)}{y}}$$|`Int(868)`|
+|13021|$$\left(\left(\pi-y\right)+\sqrt{\sqrt{x}}\right)$$|`Str("fjx")`|
+|65104|$$\sqrt{\frac{\left(\pi-y\right)}{\sqrt{\sqrt{x}}}}$$|`Str("afbq")`|
+|325521|$$\left(25+\left(y-2\right)\right)$$|`Int(108507)`|
+|1627604|$$\sqrt{\frac{25}{\left(y-2\right)}}$$|`Tree(Tree(Tree(Int(0), Int(0)), Tree(Str(""), Int(0))), Str("kc"))`|
+|8138021|$$\left(\left(\frac{x}{x}-\left(y-x\right)\right)+\left(\sqrt{y}+\sqrt{x}\right)\right)$$|`Tree(Str("uz"), Tree(Str("d"), Int(2)))`|
+|40690104|$$\sqrt{\frac{\left(\frac{x}{x}-\left(y-x\right)\right)}{\left(\sqrt{y}+\sqrt{x}\right)}}$$|`Int(13563368)`|
+|203450521|$$\left(1079+\left(\left(x+\pi\right)-\left(y+x\right)\right)\right)$$|`Str("erjlsz")`|
+|1017252604|$$\sqrt{\frac{1079}{\left(\left(x+\pi\right)-\left(y+x\right)\right)}}$$|`Str("abmzkva")`|
+|5086263021|$$\left(8929+\left(x+3\right)\right)$$|`Int(1695421007)`|
+|25431315104|$$\sqrt{\frac{8929}{\left(x+3\right)}}$$|`Tree(Tree(Tree(Str("a"), Str("a")), Tree(Int(1), Int(2))), Tree(Int(31), Tree(Tree(Int(0), Int(0)), Str(""))))`|
+|127156575521|$$\left(\left(\left(x+\pi\right)-\left(2+y\right)\right)+\sqrt{\sqrt{\frac{x}{3}}}\right)$$|`Tree(Tree(Tree(Int(1), Int(2)), Int(14)), Tree(Int(45), Str("ci")))`|
+|635782877604|$$\sqrt{\frac{\left(\left(x+\pi\right)-\left(2+y\right)\right)}{\sqrt{\sqrt{\frac{x}{3}}}}}$$|`Int(211927625868)`|
+|3178914388021|$$\left(\left(\frac{\sqrt{y}}{\frac{x}{x}}-1\right)+\sqrt{\sqrt{2305}}\right)$$|`Str("eaxdttapx")`|
+|15894571940104|$$\sqrt{\frac{\left(\frac{\sqrt{y}}{\frac{x}{x}}-1\right)}{\sqrt{\sqrt{2305}}}}$$|`Str("yipwyvhfq")`|
+|79472859700521|$$\left(814780+\left(\left(1+\sqrt{y}\right)-\sqrt{\frac{\sqrt{x}}{x}}\right)\right)$$|`Int(26490953233507)`|

@@ -1,6 +1,7 @@
 ﻿
 using System.Diagnostics;
 using System.Numerics;
+using System.Text;
 
 namespace Plutoscarab.Bijection;
 
@@ -9,7 +10,7 @@ public class Program()
     static string ToTerm(Nat n)
     {
         if (n < 3)
-            return new[] {"x", "y", "\\pi"}[(int)n];
+            return new[] { "x", "y", "\\pi" }[(int)n];
 
         var (m, f) = Nat.DivRem(n - 3, 5);
 
@@ -18,7 +19,7 @@ public class Program()
 
         if (--f == 0)
             return $"\\sqrt{{{ToTerm(m)}}}";
-            
+
         var (p, q) = m;
         var sp = ToTerm(p);
         var sq = ToTerm(q);
@@ -28,6 +29,73 @@ public class Program()
 
         var op = "+- "[(int)--f];
         return $"\\left({sp}{op}{sq}\\right)";
+    }
+
+    public static string ToTree(Nat n)
+    {
+        var (m, b) = Nat.DivRem(n, 3);
+
+        if (b.IsZero)
+            return $"Int(" + m + ")";
+
+        --b;
+        if (b.IsZero)
+            return $"Str(\"" + new string(m.ToWord(26).Select(t => (char)(97 + (int)t)).ToArray()) + "\")";
+
+        var (left, right) = m;
+        return "Tree(" + ToTree(left) + ", " + ToTree(right) + ")";
+    }
+
+    public static string PolyString(List<BigInteger> coeffs)
+    {
+        if (coeffs is null)
+        {
+            return "0";
+        }
+
+        var s = new StringBuilder();
+
+        for (var power = 0; power < coeffs.Count; power++)
+        {
+            var coeff = coeffs[power];
+
+            if (coeff != 0)
+            {
+                if (power == 0)
+                {
+                    s.Append(coeff);
+                }
+                else
+                {
+                    if (coeff < 0)
+                    {
+                        s.Append('-');
+                    }
+                    else if (s.Length > 0)
+                    {
+                        s.Append('+');
+                    }
+
+                    var abs = BigInteger.Abs(coeff);
+
+                    if (abs != 1)
+                    {
+                        s.Append(abs);
+                    }
+
+                    s.Append('n');
+
+                    if (power > 1)
+                    {
+                        s.Append('^');
+                        if (power < 10) s.Append(power);
+                        else s.Append("{" + power + "}");
+                    }
+                }
+            }
+        }
+
+        return s.ToString();
     }
 
     public static void Main()
@@ -61,25 +129,28 @@ public class Program()
                 var (pb, qb) = b.ToRational();
                 var rb = qb == 1 ? pb.ToString() : $"{pb}/{qb}";
                 var list = n.ToList();
-                var ls = string.Join(", ", list.Select(k => {
+                var ls = string.Join(", ", list.Select(k =>
+                {
                     var (p, q) = k;
                     return $"({p}, {q})";
                 }));
-                var hex = string.Join("", n.ToWord(26).Select(i => (char)((int)i + 65)));
-                Console.WriteLine($"|{n}|({ra}, {rb})|[{ls}]|\"{hex}\"");
+                var ncoeff = n.ToList(4);
+                ncoeff[^1]++;
+                var coeff = ncoeff.Select(n => -n.ToSigned()).ToList();
+                Console.WriteLine($"|{n}|({ra}, {rb})|[{ls}]|$${PolyString(coeff)}$$|");
                 (n, m) = (m, 2 * m + n);
             }
         }
 
         {
             Nat n = 1;
-            Nat m = 2;
+            Nat m = 4;
 
             for (var i = 0; i <= 20; i++)
             {
                 var expr = ToTerm(n);
-                Console.WriteLine($"|{n}|$${expr}$$|");
-                (n, m) = (m, 2 * m + n);
+                Console.WriteLine($"|{n}|$${expr}$$|`{ToTree(n)}`|");
+                (n, m) = (m, 4 * m + 5 * n);
             }
         }
 
