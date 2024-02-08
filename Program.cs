@@ -33,17 +33,13 @@ public class Program()
 
     public static string ToTree(Nat n)
     {
-        var (m, b) = Nat.DivRem(n, 3);
+        var (m, b) = Nat.DivRem(n, 2);
 
         if (b.IsZero)
-            return $"Int(" + m + ")";
-
-        --b;
-        if (b.IsZero)
-            return $"Str(\"" + new string(m.ToWord(26).Select(t => (char)(97 + (int)t)).ToArray()) + "\")";
+            return "leaf " + m.ToString();
 
         var (left, right) = m;
-        return "Tree(" + ToTree(left) + ", " + ToTree(right) + ")";
+        return "tree (" + ToTree(left) + ") (" + ToTree(right) + ")";
     }
 
     public static string PolyString(List<BigInteger> coeffs)
@@ -150,7 +146,7 @@ public class Program()
             {
                 var expr = ToTerm(n);
                 Console.WriteLine($"|{n}|$${expr}$$|`{ToTree(n)}`|");
-                (n, m) = (m, 4 * m + 5 * n);
+                (n, m) = (m, 5 * m + 3 * n);
             }
         }
 

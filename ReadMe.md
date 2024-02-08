@@ -84,24 +84,24 @@ arbitrary expressions.
 
 |Natural|Math expression|Code expression|
 |:-:|:-:|:-:|
-|1|$$y$$|`Str("")`|
-|4|$$\sqrt{x}$$|`Str("a")`|
-|21|$$\left(x+\pi\right)$$|`Int(7)`|
-|104|$$\sqrt{\frac{x}{\pi}}$$|`Tree(Int(2), Str(""))`|
-|521|$$\left(\left(x-y\right)+y\right)$$|`Tree(Tree(Int(0), Int(0)), Str("e"))`|
-|2604|$$\sqrt{\frac{\left(x-y\right)}{y}}$$|`Int(868)`|
-|13021|$$\left(\left(\pi-y\right)+\sqrt{\sqrt{x}}\right)$$|`Str("fjx")`|
-|65104|$$\sqrt{\frac{\left(\pi-y\right)}{\sqrt{\sqrt{x}}}}$$|`Str("afbq")`|
-|325521|$$\left(25+\left(y-2\right)\right)$$|`Int(108507)`|
-|1627604|$$\sqrt{\frac{25}{\left(y-2\right)}}$$|`Tree(Tree(Tree(Int(0), Int(0)), Tree(Str(""), Int(0))), Str("kc"))`|
-|8138021|$$\left(\left(\frac{x}{x}-\left(y-x\right)\right)+\left(\sqrt{y}+\sqrt{x}\right)\right)$$|`Tree(Str("uz"), Tree(Str("d"), Int(2)))`|
-|40690104|$$\sqrt{\frac{\left(\frac{x}{x}-\left(y-x\right)\right)}{\left(\sqrt{y}+\sqrt{x}\right)}}$$|`Int(13563368)`|
-|203450521|$$\left(1079+\left(\left(x+\pi\right)-\left(y+x\right)\right)\right)$$|`Str("erjlsz")`|
-|1017252604|$$\sqrt{\frac{1079}{\left(\left(x+\pi\right)-\left(y+x\right)\right)}}$$|`Str("abmzkva")`|
-|5086263021|$$\left(8929+\left(x+3\right)\right)$$|`Int(1695421007)`|
-|25431315104|$$\sqrt{\frac{8929}{\left(x+3\right)}}$$|`Tree(Tree(Tree(Str("a"), Str("a")), Tree(Int(1), Int(2))), Tree(Int(31), Tree(Tree(Int(0), Int(0)), Str(""))))`|
-|127156575521|$$\left(\left(\left(x+\pi\right)-\left(2+y\right)\right)+\sqrt{\sqrt{\frac{x}{3}}}\right)$$|`Tree(Tree(Tree(Int(1), Int(2)), Int(14)), Tree(Int(45), Str("ci")))`|
-|635782877604|$$\sqrt{\frac{\left(\left(x+\pi\right)-\left(2+y\right)\right)}{\sqrt{\sqrt{\frac{x}{3}}}}}$$|`Int(211927625868)`|
-|3178914388021|$$\left(\left(\frac{\sqrt{y}}{\frac{x}{x}}-1\right)+\sqrt{\sqrt{2305}}\right)$$|`Str("eaxdttapx")`|
-|15894571940104|$$\sqrt{\frac{\left(\frac{\sqrt{y}}{\frac{x}{x}}-1\right)}{\sqrt{\sqrt{2305}}}}$$|`Str("yipwyvhfq")`|
-|79472859700521|$$\left(814780+\left(\left(1+\sqrt{y}\right)-\sqrt{\frac{\sqrt{x}}{x}}\right)\right)$$|`Int(26490953233507)`|
+|1|$$y$$|`tree (leaf 0) (leaf 0)`|
+|4|$$\sqrt{x}$$|`leaf 2`|
+|23|$$5$$|`tree (tree (leaf 0) (leaf 0)) (tree (leaf 0) (tree (leaf 0) (leaf 0)))`|
+|127|$$\left(1-1\right)$$|`tree (leaf 4) (leaf 1)`|
+|704|$$\sqrt{\frac{\left(x+x\right)}{x}}$$|`leaf 352`|
+|3901|$$\left(8+x\right)$$|`tree (tree (tree (leaf 0) (leaf 0)) (leaf 3)) (leaf 1)`|
+|21617|$$\left(\sqrt{2}-10\right)$$|`tree (tree (leaf 1) (leaf 3)) (tree (leaf 3) (tree (leaf 0) (leaf 0)))`|
+|119788|$$23958$$|`leaf 59894`|
+|663791|$$\left(\left(y-\left(x+y\right)\right)+\left(x-\left(x+x\right)\right)\right)$$|`tree (leaf 95) (leaf 312)`|
+|3678319|$$\sqrt{147133}$$|`tree (leaf 378) (tree (tree (tree (leaf 0) (tree (leaf 0) (leaf 0))) (leaf 0)) (leaf 7))`|
+|20382968|$$4076594$$|`leaf 10191484`|
+|112949797|$$\left(\left(\sqrt{\pi}-y\right)-\sqrt{242}\right)$$|`tree (leaf 1510) (tree (leaf 31) (leaf 12))`|
+|625897889|$$\sqrt{\left(\sqrt{\left(\frac{x}{y}-2\right)}-\left(\frac{x}{x}+\left(y+y\right)\right)\right)}$$|`tree (tree (leaf 40) (tree (leaf 1) (leaf 1))) (leaf 6863)`|
+|3468338836|$$\left(\frac{\frac{x}{\sqrt{x}}}{\left(y+y\right)}+\left(\left(\pi+\pi\right)+5\right)\right)$$|`leaf 1734169418`|
+|19219387847|$$\left(6042-\left(\left(y-x\right)+\sqrt{\left(y+y\right)}\right)\right)$$|`tree (leaf 35131) (tree (tree (tree (leaf 0) (leaf 1)) (leaf 4)) (tree (tree (leaf 0) (leaf 0)) (leaf 0)))`|
+|106501955743|$$21300391149$$|`tree (leaf 142593) (tree (leaf 38) (leaf 63))`|
+|590167942256|$$\left(\sqrt{\left(\sqrt{\left(y+x\right)}-\left(\frac{x}{x}-x\right)\right)}+\left(\sqrt{\pi}-\left(y+\sqrt{x}\right)\right)\right)$$|`leaf 295083971128`|
+|3270345578509|$$\sqrt{\left(\sqrt{\sqrt{\sqrt{\frac{\left(x-1\right)}{\pi}}}}+\frac{\pi}{\sqrt{x}}\right)}$$|`tree (tree (tree (leaf 3) (tree (tree (leaf 0) (leaf 0)) (tree (leaf 0) (leaf 0)))) (leaf 160)) (leaf 739500)`|
+|18122231719313|$$3624446343863$$|`tree (leaf 2045473) (leaf 83037)`|
+|100422195332092|$$\left(\left(\frac{\sqrt{x}}{\left(x-y\right)}+\frac{3}{\pi}\right)-\frac{\left(\pi+\left(x+y\right)\right)}{\sqrt{\frac{\pi}{\pi}}}\right)$$|`leaf 50211097666046`|
+|556477671818399|$$\sqrt{\sqrt{\frac{\frac{\left(\left(x+x\right)-\frac{x}{x}\right)}{115}}{\left(\frac{\pi}{\frac{x}{y}}+\sqrt{\sqrt{\frac{x}{x}}}\right)}}}$$|`tree (leaf 5534834) (leaf 6260055)`|
