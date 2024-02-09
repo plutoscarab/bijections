@@ -43,41 +43,6 @@ public class Program()
         return "tree (" + ToTree(left) + ") (" + ToTree(right) + ")";
     }
 
-    public static string JsonFraction(Nat n) =>
-        "." + string.Join("", (n + 1).ToWord(10));
-
-    public static string JsonExponent(Nat n)
-    {
-        var (m, e) = Nat.DivRem(n, 6);
-        return new[] { "E", "E+", "E-", "e", "e+", "e-" }[e] + string.Join("", (m + 1).ToWord(10));
-    }
-
-    public static string JsonNumber(Nat n)
-    {
-        var (m, b) = Nat.DivRem(n, 4);
-        
-        switch (b)
-        {
-            case 0:
-                return m.ToSigned().ToString();
-
-            case 1:
-                var (m1, f1) = m;
-                return m1.ToSigned() + JsonFraction(f1);
-
-            case 2:
-                var (m2, e2) = m;
-                return m2.ToSigned() + JsonExponent(e2);
-
-            case 3:
-                var (m3, fe) = m;
-                var (f3, e3) = fe;
-                return m3.ToSigned() + JsonFraction(f3) + JsonExponent(e3);
-        }
-
-        throw new NotImplementedException();
-    }
-
     public static string PolyString(List<BigInteger> coeffs)
     {
         if (coeffs is null)
@@ -135,6 +100,7 @@ public class Program()
         {
             Nat n = 0;
             Nat m = 1;
+            var hiero = Enumerable.Range(0x13000, 128).Select(char.ConvertFromUtf32).ToArray();
 
             for (var i = 0; i <= 20; i++)
             {
@@ -143,8 +109,9 @@ public class Program()
                 var (p, q) = n.ToRational();
                 var r = q == 1 ? p.ToString() : $"{p}/{q}";
                 var list = n.ToList();
-                var word = n.ToWord(10);
-                Console.WriteLine($"|{n}|{n.ToSigned()}|({a}, {b})|({c}, {d}, {e})|{r}|[{string.Join(", ", list)}]|[{string.Join(", ", word)}]|");
+                var set = n.ToSet();
+                var word = n.ToStr(hiero);
+                Console.WriteLine($"|{n}|{n.ToSigned()}|({a},{b})|({c},{d},{e})|{r}|[{string.Join(",", list)}]|[{string.Join(",", set)}]|\"{string.Join("", word)}\"|");
                 (n, m) = (m, n + m);
             }
         }
@@ -160,12 +127,12 @@ public class Program()
                 var ra = qa == 1 ? pa.ToString() : $"{pa}/{qa}";
                 var (pb, qb) = b.ToRational();
                 var rb = qb == 1 ? pb.ToString() : $"{pb}/{qb}";
-                var list = n.ToList();
-                var ls = string.Join(", ", list.Select(k =>
+                var list = n.ToList(k =>
                 {
                     var (p, q) = k;
                     return $"({p}, {q})";
-                }));
+                });
+                var ls = string.Join(", ", list);
                 var ncoeff = n.ToList(4);
                 ncoeff[^1]++;
                 var coeff = ncoeff.Select(n => -n.ToSigned()).ToList();
@@ -191,15 +158,15 @@ public class Program()
         for (Nat n = 0; n < 100_000; n++)
         {
             var (p, q) = n;
-            Nat m = new(p, q);
+            Nat m = new((p, q));
             Debug.Assert(n == m);
 
             (p, q, var r) = n;
-            m = new(p, q, r);
+            m = new((p, q, r));
             Debug.Assert(n == m);
 
             (p, q, r, var s) = n;
-            m = new(p, q, r, s);
+            m = new((p, q, r, s));
             Debug.Assert(n == m);
 
             var k = 1 + rand.Next(20);
@@ -215,8 +182,13 @@ public class Program()
             m = Nat.FromRational(p, q);
             Debug.Assert(n == m);
 
-            var z = (BigInteger)n;
-            m = (Nat)z;
+            var z = n.ToSigned();
+            m = Nat.FromSigned(z);
+            Debug.Assert(n == m);
+
+            char[] alphabet = ['a', 'b', 'c'];
+            var str = n.ToStr(alphabet);
+            m = Nat.FromStr(str, alphabet);
             Debug.Assert(n == m);
         }
     }
