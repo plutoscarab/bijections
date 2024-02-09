@@ -1,6 +1,9 @@
 
 # Bijections Between Natural Numbers and Other Data Types
 
+Based on the paper "Bijective Size-preserving Gödel Numberings for Term Algebras" by Paul Tarau,
+Department of Computer Science and Engineering, University of North Texas
+
 ## What is a natural number bijection?
 
 The bijections implemented here are one-to-one mappings between natural numbers (including zero) and other data types
