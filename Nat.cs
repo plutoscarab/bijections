@@ -232,6 +232,12 @@ public struct Nat :
         return (new(div), new(rem));
     }
 
+    public static (Nat, int) DivRem(Nat p, int q)
+    {
+        var (div, rem) = BigInteger.DivRem(p.b, q);
+        return (new(div), (int)rem);
+    }
+
     public Nat(byte[] array)
     {
         BigInteger b = new(array ?? throw new ArgumentNullException(nameof(array)));

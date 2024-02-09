@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
@@ -35,11 +36,46 @@ public class Program()
     {
         var (m, b) = Nat.DivRem(n, 2);
 
-        if (b.IsZero)
+        if (b == 0)
             return "leaf " + m.ToString();
 
         var (left, right) = m;
         return "tree (" + ToTree(left) + ") (" + ToTree(right) + ")";
+    }
+
+    public static string JsonFraction(Nat n) =>
+        "." + string.Join("", (n + 1).ToWord(10));
+
+    public static string JsonExponent(Nat n)
+    {
+        var (m, e) = Nat.DivRem(n, 6);
+        return new[] { "E", "E+", "E-", "e", "e+", "e-" }[e] + string.Join("", (m + 1).ToWord(10));
+    }
+
+    public static string JsonNumber(Nat n)
+    {
+        var (m, b) = Nat.DivRem(n, 4);
+        
+        switch (b)
+        {
+            case 0:
+                return m.ToSigned().ToString();
+
+            case 1:
+                var (m1, f1) = m;
+                return m1.ToSigned() + JsonFraction(f1);
+
+            case 2:
+                var (m2, e2) = m;
+                return m2.ToSigned() + JsonExponent(e2);
+
+            case 3:
+                var (m3, fe) = m;
+                var (f3, e3) = fe;
+                return m3.ToSigned() + JsonFraction(f3) + JsonExponent(e3);
+        }
+
+        throw new NotImplementedException();
     }
 
     public static string PolyString(List<BigInteger> coeffs)
@@ -145,7 +181,7 @@ public class Program()
             for (var i = 0; i <= 20; i++)
             {
                 var expr = ToTerm(n);
-                Console.WriteLine($"|{n}|$${expr}$$|`{ToTree(n)}`|");
+                Console.WriteLine($"|{n}|$${expr}$$|`{ToTree(n)}`|{JsonNumber(n)}|");
                 (n, m) = (m, 5 * m + 3 * n);
             }
         }
