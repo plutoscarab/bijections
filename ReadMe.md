@@ -86,26 +86,26 @@ each element of the pair to a rational.
 Mappings can be recursively defined, for example to encode a term algebra to generate or encode
 arbitrary expressions.
 
-|Natural|Math expression|Code expression|JSON number|
-|:-:|:-:|:-:|:-:|
-|1|$$y$$|`tree (leaf 0) (leaf 0)`|0.0|
-|4|$$\sqrt{x}$$|`leaf 2`|-1|
-|23|$$5$$|`tree (tree (leaf 0) (leaf 0)) (tree (leaf 0) (tree (leaf 0) (leaf 0)))`|1.0E0|
-|127|$$\left(1-1\right)$$|`tree (leaf 4) (leaf 1)`|-2.1E+0|
-|704|$$\sqrt{\frac{\left(x+x\right)}{x}}$$|`leaf 352`|88|
-|3901|$$\left(8+x\right)$$|`tree (tree (tree (leaf 0) (leaf 0)) (leaf 3)) (leaf 1)`|-15.04|
-|21617|$$\left(\sqrt{2}-10\right)$$|`tree (tree (leaf 1) (leaf 3)) (tree (leaf 3) (tree (leaf 0) (leaf 0)))`|24.45|
-|119788|$$23958$$|`leaf 59894`|-14974|
-|663791|$$\left(\left(y-\left(x+y\right)\right)+\left(x-\left(x+x\right)\right)\right)$$|`tree (leaf 95) (leaf 312)`|-174.08E-0|
-|3678319|$$\sqrt{147133}$$|`tree (leaf 378) (tree (tree (tree (leaf 0) (tree (leaf 0) (leaf 0))) (leaf 0)) (leaf 7))`|-445.1e-4|
-|20382968|$$4076594$$|`leaf 10191484`|2547871|
-|112949797|$$\left(\left(\sqrt{\pi}-y\right)-\sqrt{242}\right)$$|`tree (leaf 1510) (tree (leaf 31) (leaf 12))`|1797.2810|
-|625897889|$$\sqrt{\left(\sqrt{\left(\frac{x}{y}-2\right)}-\left(\frac{x}{x}+\left(y+y\right)\right)\right)}$$|`tree (tree (leaf 40) (tree (leaf 1) (leaf 1))) (leaf 6863)`|-7634.1312|
-|3468338836|$$\left(\frac{\frac{x}{\sqrt{x}}}{\left(y+y\right)}+\left(\left(\pi+\pi\right)+5\right)\right)$$|`leaf 1734169418`|-433542355|
-|19219387847|$$\left(6042-\left(\left(y-x\right)+\sqrt{\left(y+y\right)}\right)\right)$$|`tree (leaf 35131) (tree (tree (tree (leaf 0) (leaf 1)) (leaf 4)) (tree (tree (leaf 0) (leaf 0)) (leaf 0)))`|-26778.110e-02|
-|106501955743|$$21300391149$$|`tree (leaf 142593) (tree (leaf 38) (leaf 63))`|26997.42E-80|
-|590167942256|$$\left(\sqrt{\left(\sqrt{\left(y+x\right)}-\left(\frac{x}{x}-x\right)\right)}+\left(\sqrt{\pi}-\left(y+\sqrt{x}\right)\right)\right)$$|`leaf 295083971128`|73770992782|
-|3270345578509|$$\sqrt{\left(\sqrt{\sqrt{\sqrt{\frac{\left(x-1\right)}{\pi}}}}+\frac{\pi}{\sqrt{x}}\right)}$$|`tree (tree (tree (leaf 3) (tree (tree (leaf 0) (leaf 0)) (tree (leaf 0) (leaf 0)))) (leaf 160)) (leaf 739500)`|159468.848692|
-|18122231719313|$$3624446343863$$|`tree (leaf 2045473) (leaf 83037)`|365316.1168426|
-|100422195332092|$$\left(\left(\frac{\sqrt{x}}{\left(x-y\right)}+\frac{3}{\pi}\right)-\frac{\left(\pi+\left(x+y\right)\right)}{\sqrt{\frac{\pi}{\pi}}}\right)$$|`leaf 50211097666046`|-12552774416512|
-|556477671818399|$$\sqrt{\sqrt{\frac{\frac{\left(\left(x+x\right)-\frac{x}{x}\right)}{115}}{\left(\frac{\pi}{\frac{x}{y}}+\sqrt{\sqrt{\frac{x}{x}}}\right)}}}$$|`tree (leaf 5534834) (leaf 6260055)`|-1466661.15e+759|
+|Natural|Math expression|Code expression|
+|:-:|:-:|:-:|
+|1|$$y$$|`tree (leaf 0) (leaf 0)`|
+|4|$$\sqrt{x}$$|`leaf 2`|
+|23|$$5$$|`tree (tree (leaf 0) (leaf 0)) (tree (leaf 0) (tree (leaf 0) (leaf 0)))`|
+|127|$$\left(1-1\right)$$|`tree (leaf 4) (leaf 1)`|
+|704|$$\sqrt{\frac{\left(x+x\right)}{x}}$$|`leaf 352`|
+|3901|$$\left(8+x\right)$$|`tree (tree (tree (leaf 0) (leaf 0)) (leaf 3)) (leaf 1)`|
+|21617|$$\left(\sqrt{2}-10\right)$$|`tree (tree (leaf 1) (leaf 3)) (tree (leaf 3) (tree (leaf 0) (leaf 0)))`|
+|119788|$$23958$$|`leaf 59894`|
+|663791|$$\left(\left(y-\left(x+y\right)\right)+\left(x-\left(x+x\right)\right)\right)$$|`tree (leaf 95) (leaf 312)`|
+|3678319|$$\sqrt{147133}$$|`tree (leaf 378) (tree (tree (tree (leaf 0) (tree (leaf 0) (leaf 0))) (leaf 0)) (leaf 7))`|
+|20382968|$$4076594$$|`leaf 10191484`|
+|112949797|$$\left(\left(\sqrt{\pi}-y\right)-\sqrt{242}\right)$$|`tree (leaf 1510) (tree (leaf 31) (leaf 12))`|
+|625897889|$$\sqrt{\left(\sqrt{\left(\frac{x}{y}-2\right)}-\left(\frac{x}{x}+\left(y+y\right)\right)\right)}$$|`tree (tree (leaf 40) (tree (leaf 1) (leaf 1))) (leaf 6863)`|
+|3468338836|$$\left(\frac{\frac{x}{\sqrt{x}}}{\left(y+y\right)}+\left(\left(\pi+\pi\right)+5\right)\right)$$|`leaf 1734169418`|
+|19219387847|$$\left(6042-\left(\left(y-x\right)+\sqrt{\left(y+y\right)}\right)\right)$$|`tree (leaf 35131) (tree (tree (tree (leaf 0) (leaf 1)) (leaf 4)) (tree (tree (leaf 0) (leaf 0)) (leaf 0)))`|
+|106501955743|$$21300391149$$|`tree (leaf 142593) (tree (leaf 38) (leaf 63))`|
+|590167942256|$$\left(\sqrt{\left(\sqrt{\left(y+x\right)}-\left(\frac{x}{x}-x\right)\right)}+\left(\sqrt{\pi}-\left(y+\sqrt{x}\right)\right)\right)$$|`leaf 295083971128`|
+|3270345578509|$$\sqrt{\left(\sqrt{\sqrt{\sqrt{\frac{\left(x-1\right)}{\pi}}}}+\frac{\pi}{\sqrt{x}}\right)}$$|`tree (tree (tree (leaf 3) (tree (tree (leaf 0) (leaf 0)) (tree (leaf 0) (leaf 0)))) (leaf 160)) (leaf 739500)`|
+|18122231719313|$$3624446343863$$|`tree (leaf 2045473) (leaf 83037)`|
+|100422195332092|$$\left(\left(\frac{\sqrt{x}}{\left(x-y\right)}+\frac{3}{\pi}\right)-\frac{\left(\pi+\left(x+y\right)\right)}{\sqrt{\frac{\pi}{\pi}}}\right)$$|`leaf 50211097666046`|
+|556477671818399|$$\sqrt{\sqrt{\frac{\frac{\left(\left(x+x\right)-\frac{x}{x}\right)}{115}}{\left(\frac{\pi}{\frac{x}{y}}+\sqrt{\sqrt{\frac{x}{x}}}\right)}}}$$|`tree (leaf 5534834) (leaf 6260055)`|

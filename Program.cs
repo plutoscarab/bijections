@@ -181,7 +181,7 @@ public class Program()
             for (var i = 0; i <= 20; i++)
             {
                 var expr = ToTerm(n);
-                Console.WriteLine($"|{n}|$${expr}$$|`{ToTree(n)}`|{JsonNumber(n)}|");
+                Console.WriteLine($"|{n}|$${expr}$$|`{ToTree(n)}`|");
                 (n, m) = (m, 5 * m + 3 * n);
             }
         }
