@@ -28,7 +28,7 @@ public class Program()
         if (--f == 0)
             return $"\\frac{{{sp}}}{{{sq}}}";
 
-        var op = "+- "[(int)--f];
+        var op = "+-"[(int)--f];
         return $"\\left({sp}{op}{sq}\\right)";
     }
 

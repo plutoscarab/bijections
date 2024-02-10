@@ -33,7 +33,7 @@ The number obtained from a bijective mapping can be used for several purposes:
 
 ## Supported bijections
 
-|Natural|Integer|Pair of naturals|n-tuple of naturals|Ratio of naturals|List of naturals|Set of naturals|String (with hieroglyphic alphabet)|
+|Natural|Integer|Pair of naturals|n-tuple of naturals|Ratio of naturals|List of naturals|Set of naturals|String (example with hieroglyphics)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |0|0|(0,0)|(0,0,0)|0|[]|[]|""|
 |1|-1|(0,1)|(0,0,1)|1|[0]|[0]|"𓀀"|
