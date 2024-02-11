@@ -1,6 +1,7 @@
 ﻿
 using System.Collections;
 using System.Diagnostics;
+using System.Globalization;
 using System.Numerics;
 using System.Text;
 
@@ -104,14 +105,15 @@ public class Program()
 
             for (var i = 0; i <= 20; i++)
             {
-                var (a, b) = n;
-                var (c, d, e) = n;
-                var (p, q) = n.ToRational();
+                var k = n + i;
+                var (a, b) = k;
+                var (c, d, e) = k;
+                var (p, q) = k.ToRational();
                 var r = q == 1 ? p.ToString() : $"{p}/{q}";
-                var list = n.ToList();
-                var set = n.ToSet();
-                var word = n.ToStr(hiero);
-                Console.WriteLine($"|{n}|{n.ToSigned()}|({a},{b})|({c},{d},{e})|{r}|[{string.Join(",", list)}]|[{string.Join(",", set)}]|\"{string.Join("", word)}\"|");
+                var list = k.ToList();
+                var set = k.ToSet();
+                var word = k.ToWord(hiero);
+                Console.WriteLine($"|{k}|{k.ToSigned()}|({a},{b})|({c},{d},{e})|{r}|[{string.Join(",", list)}]|[{string.Join(",", set)}]|\"{string.Join("", word)}\"|");
                 (n, m) = (m, n + m);
             }
         }
@@ -153,7 +155,26 @@ public class Program()
             }
         }
 
+        {
+            Nat n = 3;
+
+            for (var i = 0; i <= 20; i++)
+            {
+                var json = n.ToJson();
+                Console.WriteLine($"|{n}|{json}|");
+                n = n * 37 + 1;
+            }
+        }
+
         Random rand = new();
+
+        for (var i = 0; i < 100; i++)
+        {
+            Nat n = 0;
+            for (var j = 0; j < 10; j++)
+                n = n * 1_000_000 + rand.Next(1_000_000);
+            Console.WriteLine($"{n}: {n.ToJson()}");
+        }
 
         for (Nat n = 0; n < 100_000; n++)
         {
@@ -187,8 +208,8 @@ public class Program()
             Debug.Assert(n == m);
 
             char[] alphabet = ['a', 'b', 'c'];
-            var str = n.ToStr(alphabet);
-            m = Nat.FromStr(str, alphabet);
+            var str = n.ToWord(alphabet);
+            m = Nat.FromWord(str, alphabet);
             Debug.Assert(n == m);
         }
     }
